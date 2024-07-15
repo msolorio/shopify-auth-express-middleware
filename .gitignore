@@ -1,3 +1,5 @@
+TODO.md
+
 # Logs
 logs
 *.log
@@ -11,6 +13,7 @@ coverage
 
 # Transpiled files
 build/
+dist/
 
 # VS Code
 .vscode
