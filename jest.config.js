@@ -7,7 +7,11 @@ export default {
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.(m)?js$': '$1',
   },
-  testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.(m)?ts$',
+  moduleFileExtensions: ['ts', 'mts', 'js', 'mjs'],
+  extensionsToTreatAsEsm: ['.ts', '.mts'],
+  testRegex: [
+    '/tests/.*\.test\.(m)?ts$',
+  ],
   coverageDirectory: 'coverage',
   collectCoverageFrom: [
     'src/**/*.ts',

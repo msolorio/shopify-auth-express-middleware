@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "node16",
+    "module": "nodenext",
     "lib": [
       "ES2022"
     ],
-    "moduleResolution": "node16",
+    "moduleResolution": "nodenext",
     "rootDir": ".",
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
@@ -20,6 +20,7 @@
     "noImplicitAny": false,
     "noImplicitThis": false,
     "strictNullChecks": false,
+    "allowJs": true,
     "baseUrl": ".",
     "paths": {
       "#app/*": [
@@ -28,7 +29,9 @@
     }
   },
   "include": [
-    "src/**/*",
-    "tests/**/*"
+    "src/**/*.mts",
+    "src/**/*.ts",
+    "tests/**/*.mts",
+    "tests/**/*.ts",
   ]
 }
