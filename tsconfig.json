@@ -19,7 +19,13 @@
     "noUnusedParameters": true,
     "noImplicitAny": false,
     "noImplicitThis": false,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "baseUrl": ".",
+    "paths": {
+      "#app/*": [
+        "src/app/*"
+      ]
+    }
   },
   "include": [
     "src/**/*",

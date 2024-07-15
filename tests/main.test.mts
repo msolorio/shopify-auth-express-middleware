@@ -1,4 +1,4 @@
-import { add } from '../src/app/main.js'
+import { add } from '#app/main.mjs'
 
 describe('add', () => {
   it('adds two numbers', () => {

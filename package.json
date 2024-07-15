@@ -36,5 +36,8 @@
     "prettier": "prettier --config .prettierrc --write .",
     "test:watch": "jest --watch"
   },
+  "imports": {
+    "#app/*": "./dist/src/app/*"
+  },
   "license": "Apache-2.0"
 }
