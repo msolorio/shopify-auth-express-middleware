@@ -4,7 +4,10 @@
   "description": "Minimalistic boilerplate to quick-start Node.js development in TypeScript.",
   "type": "module",
   "engines": {
-    "node": ">= 20.9 < 21"
+    "node": "20.12.2"
+  },
+  "dependencies": {
+    "tslib": "~2.6"
   },
   "devDependencies": {
     "@types/jest": "~29.5",
@@ -33,11 +36,5 @@
     "prettier": "prettier --config .prettierrc --write .",
     "test:watch": "jest --watch"
   },
-  "license": "Apache-2.0",
-  "dependencies": {
-    "tslib": "~2.6"
-  },
-  "volta": {
-    "node": "20.12.2"
-  }
+  "license": "Apache-2.0"
 }
