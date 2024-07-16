@@ -1,4 +1,4 @@
-function add(a: number, b: number): number {
+const add = function (a: number, b: number): number {
   return a + b
 }
 
