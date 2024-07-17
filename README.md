@@ -25,7 +25,7 @@
 
 ## Getting Started
 
-Start adding your code in the `src` and unit tests in the `tests` directories.
+Start adding your code in the `src` and unit tests in the `__tests__` directories.
 
 ### Clone repository
 

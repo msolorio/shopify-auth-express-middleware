@@ -10,7 +10,7 @@ export default {
   moduleFileExtensions: ['ts', 'mts', 'js', 'mjs'],
   extensionsToTreatAsEsm: ['.ts', '.mts'],
   testRegex: [
-    '/tests/.*\.test\.(m)?ts$',
+    '/__tests__/.*\.test\.(m)?ts$',
   ],
   coverageDirectory: 'coverage',
   collectCoverageFrom: [

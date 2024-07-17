@@ -18,7 +18,7 @@ COPY .eslintignore \
 RUN npm i
 
 COPY src/ ./src
-COPY tests/ ./tests
+COPY __tests__/ ./__tests__
 RUN npm run build
 
 CMD ["npm", "start"]

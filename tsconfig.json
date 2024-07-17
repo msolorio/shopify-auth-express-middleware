@@ -31,7 +31,7 @@
   "include": [
     "src/**/*.mts",
     "src/**/*.ts",
-    "tests/**/*.mts",
-    "tests/**/*.ts",
+    "__tests__/**/*.mts",
+    "__tests__/**/*.ts",
   ]
 }
