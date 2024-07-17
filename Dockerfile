@@ -15,7 +15,7 @@ COPY .eslintignore \
   package-lock.json \
   ./
 
-RUN npm i
+RUN npm ci
 
 COPY src/ ./src
 COPY __tests__/ ./__tests__

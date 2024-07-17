@@ -37,7 +37,16 @@ cd node-typescript-boilerplate
 npm install
 ```
 
-## Available Scripts
+## Make Scripts
+Developer facing scripts to build, run, and test the application.
+
+- `build` - Build docker container
+- `up` - Start app and TypeScript compiler in watch mode both inside a container
+- `down` - Remove container
+- `logs` - Show container logs
+- `test` - Run tests
+
+## NPM Scripts
 
 - `clean` - remove coverage data, Jest cache and transpiled files,
 - `prebuild` - lint source files and tests before building,

@@ -6,7 +6,7 @@ build:
 	docker-compose build
 
 up:
-	docker-compose up -d app
+	docker-compose up -d app && docker-compose exec -d app npm run build:watch
 
 down:
 	docker-compose down
@@ -14,8 +14,5 @@ down:
 logs:
 	docker-compose logs app | tail -100
 
-ts-build: up
-	docker-compose run --rm --no-deps --entrypoint='npm run build' app
-
-test: up
+test:
 	docker-compose run --rm --no-deps --entrypoint='npm test' app
