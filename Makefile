@@ -15,7 +15,7 @@ logs:
 	docker-compose logs app | tail -100
 
 ts-build: up
-	docker-compose run --entrypoint='npm run build' app
+	docker-compose run --rm --no-deps --entrypoint='npm run build' app
 
 test: up
-	docker-compose run --entrypoint='npm test' app
+	docker-compose run --rm --no-deps --entrypoint='npm test' app

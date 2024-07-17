@@ -5,10 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - API_HOST=app
+      - PORT=80
+    ports:
+      - "3000:80"
     volumes:
-      - /src:/app/src
-      - /test:/app/test
-      - /dist:/app/dist
-      - /node_modules:/app/node_modules
-      - /package.json:/app/package.json
-      - /package-lock.json:/app/package-lock.json
+      - .:/app
+    
