@@ -9,19 +9,16 @@
 
 🏃🏽 Instant Value: All basic tools included and configured:
 
-- [TypeScript][typescript] [5.4][typescript-5-4]
-- [ESM][esm]
+- [TypeScript][typescript] [5.4][typescript-5-4] Configured
+- [ESM][esm] modern ecmascript modules support
 - [ESLint][eslint] with some initial rules recommendation
+- Path aliasing natively with [Node.js][path-aliasing-node] and [TypeScript][path-aliasing-typescript]
 - [Jest][jest] for fast unit testing and code coverage
-- Type definitions for Node.js and Jest
 - [Prettier][prettier] to enforce consistent code style
 - NPM [scripts](#available-scripts) for common operations
 - [EditorConfig][editorconfig] for consistent coding style
 - [Docker and Docker Compose][docker] configuration
 - Configuration for [GitHub Actions][gh-actions] for CI
-- Simple example of TypeScript code and unit test
-
-🤲 Free as in speech: available under the APLv2 license.
 
 ## Getting Started
 
@@ -66,8 +63,8 @@ This template uses native [ESM][esm]. Make sure to read [this][nodejs-esm], and 
 
 If your project requires CommonJS, you will have to [convert to ESM][sindresorhus-esm].
 
-Please do not open issues for questions regarding CommonJS or ESM on this repo.
-
+[path-aliasing-node]: https://nodejs.org/api/packages.html#packages_subpath_imports
+[path-aliasing-typescript]: https://www.typescriptlang.org/tsconfig/#paths
 [docker]: https://www.docker.com/
 [ts-badge]: https://img.shields.io/badge/TypeScript-5.4-blue.svg
 [nodejs-badge]: https://img.shields.io/badge/Node.js->=%2020.9-blue.svg
