@@ -1,28 +1,28 @@
-# node-typescript-boilerplate
+# Node TypeScript Express Boilerplate
 
 [![TypeScript version][ts-badge]][typescript-5-4]
 [![Node.js version][nodejs-badge]][nodejs]
-[![APLv2][license-badge]][license]
 [![Build Status - GitHub Actions][gha-badge]][gha-ci]
 
-👩🏻‍💻 Developer Ready: A comprehensive template. Works out of the box for most [Node.js][nodejs] projects.
+👩🏻‍💻 Developer Ready: A comprehensive template. Works out of the box for most [Express js][express] projects.
 
 🏃🏽 Instant Value: All basic tools included and configured:
 
 - [TypeScript][typescript] [5.4][typescript-5-4] Configured
 - [ESM][esm] modern ecmascript modules support
-- [ESLint][eslint] with some initial rules recommendation
 - Path aliasing natively with [Node.js][path-aliasing-node] and [TypeScript][path-aliasing-typescript]
 - [Jest][jest] for fast unit testing and code coverage
-- [Prettier][prettier] to enforce consistent code style
-- NPM [scripts](#available-scripts) for common operations
-- [EditorConfig][editorconfig] for consistent coding style
 - [Docker and Docker Compose][docker] configuration
-- Configuration for [GitHub Actions][gh-actions] for CI
+- NPM [scripts](#available-scripts) for common operations
+- [ESLint][eslint] with some initial rules recommendation
+- [Prettier][prettier] to enforce consistent code style
+- [EditorConfig][editorconfig] for consistent coding style
+- [GitHub Actions][gh-actions] configuration for CI
+- [Makefile][makefile] scripts for common developer operations
 
 ## Getting Started
 
-Start adding your code in the `src` and unit tests in the `__tests__` directories.
+Start adding your code in the `src` and tests in the `__tests__` directories.
 
 ### Setup
 To setup the project run the following commands:
@@ -63,6 +63,7 @@ This template uses native [ESM][esm]. Make sure to read [this][nodejs-esm], and 
 
 If your project requires CommonJS, you will have to [convert to ESM][sindresorhus-esm].
 
+[express]: https://expressjs.com
 [path-aliasing-node]: https://nodejs.org/api/packages.html#packages_subpath_imports
 [path-aliasing-typescript]: https://www.typescriptlang.org/tsconfig/#paths
 [docker]: https://www.docker.com/
@@ -91,3 +92,4 @@ If your project requires CommonJS, you will have to [convert to ESM][sindresorhu
 [nodejs-esm]: https://nodejs.org/docs/latest-v16.x/api/esm.html
 [ts47-esm]: https://devblogs.microsoft.com/typescript/announcing-typescript-4-7/#esm-nodejs
 [editorconfig]: https://editorconfig.org
+[makefile]: https://www.gnu.org/software/make/manual/make.html#Simple-Makefile
