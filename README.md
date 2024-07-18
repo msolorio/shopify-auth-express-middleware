@@ -18,7 +18,7 @@
 - NPM [scripts](#available-scripts) for common operations
 - [EditorConfig][editorconfig] for consistent coding style
 - [Docker and Docker Compose][docker] configuration
-- Example configuration for [GitHub Actions][gh-actions]
+- Configuration for [GitHub Actions][gh-actions] for CI
 - Simple example of TypeScript code and unit test
 
 🤲 Free as in speech: available under the APLv2 license.
@@ -27,14 +27,15 @@
 
 Start adding your code in the `src` and unit tests in the `__tests__` directories.
 
-### Clone repository
-
-To clone the repository, use the following commands:
+### Setup
+To setup the project run the following commands:
 
 ```sh
-git clone https://github.com/jsynowiec/node-typescript-boilerplate
+git clone git@github.com:msolorio/node-typescript-express-boilerplate.git
 cd node-typescript-boilerplate
-npm install
+make build
+make up
+make test
 ```
 
 ## Make Scripts
