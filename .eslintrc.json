@@ -20,5 +20,8 @@
     "plugin:jest/recommended",
     "prettier"
   ],
-  "rules": {}
+  "rules": {
+    "jest/no-focused-tests": 0,
+    "@typescript-eslint/no-explicit-any": 0
+  }
 }

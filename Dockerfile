@@ -1,5 +1,4 @@
-# node:20.12.2-bullseye
-FROM node@sha256:80234aa9669e62c1fb47780d96128127c96fed663bd17dfacfe7bf9e5473884c
+FROM node:20.16.0-bookworm@sha256:1ae9ba874435551280e95c8a8e74adf8a48d72b564bf9dfe4718231f2144c88f
 
 EXPOSE 80
 
@@ -8,17 +7,21 @@ WORKDIR /app
 
 COPY .eslintignore \
   .eslintrc.json \
+  .editorconfig \
   .prettierrc \
   jest.config.js \
   tsconfig.json \
   package.json \
   package-lock.json \
+  docker-compose.yml \
+  docker-compose.ci.yml \
   ./
 
 RUN npm ci
 
 COPY src/ ./src
 COPY __tests__/ ./__tests__
+
 RUN npm run build
 
 CMD ["npm", "start"]

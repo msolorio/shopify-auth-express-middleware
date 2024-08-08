@@ -1,30 +1,36 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "nodenext",
+    "module": "es2015",
     "lib": [
       "ES2022"
     ],
-    "moduleResolution": "nodenext",
+    "moduleResolution": "bundler",
     "rootDir": ".",
     "outDir": "dist",
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "alwaysStrict": true,
     "sourceMap": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noImplicitThis": false,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
+    "strict": true,
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
       "#app/*": [
         "src/app/*"
+      ],
+      "#__tests__": [
+        "__tests__/*"
       ]
     }
   },
