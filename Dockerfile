@@ -13,8 +13,6 @@ COPY .eslintignore \
   tsconfig.json \
   package.json \
   package-lock.json \
-  docker-compose.yml \
-  docker-compose.ci.yml \
   ./
 
 RUN npm ci
