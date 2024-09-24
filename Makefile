@@ -7,7 +7,12 @@ build:
 
 up:
 	docker compose up -d app
-	docker compose exec -d app npm run build:watch
+
+dev:
+	docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d app
+
+test:
+	docker compose run --rm --no-deps --entrypoint='npm test' app
 
 down:
 	docker compose down
@@ -23,9 +28,6 @@ up-ci:
 
 ts-build:
 	docker compose run --rm --no-deps --entrypoint='npm run build' app
-
-test:
-	docker compose run --rm --no-deps --entrypoint='npm test' app
 
 test-coverage:
 	docker compose run --rm --no-deps --entrypoint='npm run test:coverage' app

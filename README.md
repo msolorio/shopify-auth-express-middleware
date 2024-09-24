@@ -4,8 +4,7 @@
 [![Node.js version][nodejs-badge]][nodejs]
 [![Build Status - GitHub Actions][gha-badge]][gha-ci]
 
-👩🏻‍💻 Developer Ready: A comprehensive template. Works out of the box for most [Express js][express] projects.
-
+👩🏻‍💻 Developer Ready
 🏃🏽 Instant Value: All basic tools included and configured:
 
 - [TypeScript][typescript] [5.4][typescript-5-4] Configured
@@ -38,28 +37,17 @@ make test
 ## Make Scripts
 Developer facing scripts to build, run, and test the application.
 
-- `build` - Build docker container
-- `up` - Start app and TypeScript compiler in watch mode both inside a container
-- `down` - Remove container
-- `logs` - Show container logs
-- `test` - Run tests
-
-## NPM Scripts
-
-- `clean` - remove coverage data, Jest cache and transpiled files,
-- `prebuild` - lint source files and tests before building,
-- `build` - transpile TypeScript to ES6,
-- `build:watch` - interactive watch mode to automatically transpile source files,
-- `lint` - lint source files and tests,
-- `prettier` - reformat files,
-- `test` - run tests,
-- `test:watch` - interactive watch mode to automatically re-run tests
-
-## Additional Information
+- `make build` - Build docker container
+- `make dev` - Start app in watch mode
+- `make test` - Run tests
+- `make up` - Start from compiled code
+- `make down` - Remove container
+- `make logs` - Show container logs
+- `make run cmd=<command-to-run>` - Runs command in container
 
 ### ES Modules
 
-This template uses native [ESM][esm]. Make sure to read [this][nodejs-esm], and [this][ts47-esm] first.
+This template uses native [ESM][esm].
 
 If your project requires CommonJS, you will have to [convert to ESM][sindresorhus-esm].
 

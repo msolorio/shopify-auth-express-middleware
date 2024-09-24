@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   app:
     container_name: app
@@ -17,7 +16,9 @@ services:
     ports:
       - "3000:80"
     volumes:
-      - .:/app
+      # - .:/app
+      - ./src:/app/src
+      - ./__tests__:/app/__tests__
   # postgres:
   #   container_name: postgres
   #   image: postgres:16.1

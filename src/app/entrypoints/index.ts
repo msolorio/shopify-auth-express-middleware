@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-import { getApiUrl, getPort } from '#app/config.mjs'
+import { getApiUrl, getPort } from '#app/config.js'
 
 const app = express()
 app.use(bodyParser.json())
