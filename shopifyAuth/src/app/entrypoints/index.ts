@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import { getApiUrl, getPort } from '#app/config.js'
 import '@shopify/shopify-api/adapters/node';
 import { shopifyApi, LATEST_API_VERSION } from '@shopify/shopify-api'
+import { ShopRepository, mongodbClient } from '#app/db/connection'
 
 const app = express()
 app.use(bodyParser.json())
@@ -38,6 +39,8 @@ app.get('/api/auth/callback', async (req, res) => {
   });
   // contains access token
   console.log('callback.session', callback.session)
+
+
 
   res.status(200).send('You have approved the app.');
 });
