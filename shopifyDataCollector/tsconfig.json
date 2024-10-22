@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "lib": [
+      "ES2022"
+    ],
+    "moduleResolution": "bundler",
+    "rootDir": ".",
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "strictNullChecks": true,
+    "strict": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "#app/*": [
+        "src/app/*"
+      ],
+      "#__tests__": [
+        "__tests__/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*.mts",
+    "src/**/*.ts",
+    "__tests__/**/*.mts",
+    "__tests__/**/*.ts",
+  ]
+}

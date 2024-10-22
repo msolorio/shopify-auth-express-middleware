@@ -4,3 +4,4 @@ networks:
 include:
   - ./shopifyAuth/docker-compose.dev.yml
   - ./sessionStorage/docker-compose.yml
+  - ./shopifyDataCollector/docker-compose.dev.yml

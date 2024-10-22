@@ -1,0 +1,16 @@
+services:
+  shopify_data_collector:
+    container_name: shopify_data_collector
+    image: node-typescript
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - API_HOST=shopify_data_collector
+      - PORT=80
+    ports:
+      - "3001:80"
+    volumes:
+      # - .:/app
+      - ./src:/app/src
+      - ./__tests__:/app/__tests__
