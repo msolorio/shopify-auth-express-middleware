@@ -1,34 +1,6 @@
-services:
-  app:
-    container_name: app
-    image: node-typescript
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - API_HOST=app
-      - PORT=80
-      # - DB_HOST=postgres
-      # - DATABASE_URL=postgres://allocation:abc123@postgres:5432/allocation
-      # - DB_PASSWORD=abc123
-    # depends_on:
-    #   - postgres
-    ports:
-      - "3000:80"
-    volumes:
-      # - .:/app
-      - ./src:/app/src
-      - ./__tests__:/app/__tests__
-  # postgres:
-  #   container_name: postgres
-  #   image: postgres:16.1
-  #   environment:
-  #     - POSTGRES_USER=allocation
-  #     - POSTGRES_PASSWORD=abc123
-  #   ports:
-  #     - "54321:5432"
-  #   volumes:
-  #     - postgres-data:/var/lib/postgresql/data
-
-# volumes:
-#   postgres-data:
+networks:
+  shopify_data_collector:
+    driver: bridge
+include:
+  - ./shopifyAuth/docker-compose.dev.yml
+  - ./sessionStorage/docker-compose.yml
