@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import { getApiUrl, getPort } from '#app/config.js'
-import { ShopsRepository } from '#app/db/shopRepository'
+import { AuthRepository } from '#app/db/shopRepository'
 
 const app = express()
 app.use(bodyParser.json())
@@ -14,27 +14,34 @@ app.get('/health', (_, res) => {
 })
 
 app.get('/data/:shopify_store', async (req, res) => {
-  const shopRepository = new ShopsRepository()
-  const session = await shopRepository.get(req.params.shopify_store)
+  const shopifyStore = req.params.shopify_store
+  const authRepository = new AuthRepository()
+  const session = await authRepository.get(shopifyStore)
+  const accessToken = String(session && session.accessToken)
 
-  return res.json(session)
-
-  // const shopifyStore = req.params.shopify_store
-  // const data = await fetch(adminApiUrl(shopifyStore), {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'X-Shopify-Access-Token': process.env.SHOPIFY_API_KEY,
-  //   },
-  //   body: JSON.stringify({
-  //     query: `
-  //       {
-  //         shop {
-  //           name
-  //         }
-  //       }
-  //     `,
-  //   }),
+  const data = await fetch(adminApiUrl(shopifyStore), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Access-Token': accessToken,
+    },
+    body: JSON.stringify({
+      query: `
+        {
+          products (first: 3) {
+            edges {
+              node {
+                id
+                title
+              }
+            }
+          }
+        }
+      `,
+    }),
+  })
+  const json = await data.json()
+  return res.json(json)
 })
 
 app.listen(getPort(), () => {

@@ -3,7 +3,7 @@ import { MongoClient, Db, Collection } from 'mongodb';
 const url = 'mongodb://root:example@mongo:27017'
 const dbName = 'shopifyAuth';
 
-class ShopsRepository {
+class AuthRepository {
   private _mongodbClient: MongoClient
   private _db: Db
   private _shopsModel: Collection
@@ -21,15 +21,6 @@ class ShopsRepository {
     await this._mongodbClient.close()
     return result
   }
-  // async add(shop: any) {
-  //   await this._mongodbClient.connect()
-  //   await this._shopsModel.updateOne(
-  //     { shop: shop.shop },
-  //     { $set: shop },
-  //     { upsert: true },
-  //   )
-  //   await this._mongodbClient.close()
-  // }
 }
 
-export { ShopsRepository }
+export { AuthRepository }
