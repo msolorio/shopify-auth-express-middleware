@@ -6,6 +6,7 @@ import { getApiUrl, getPort } from '#app/config.js'
 import '@shopify/shopify-api/adapters/node';
 import { shopifyApi, LATEST_API_VERSION } from '@shopify/shopify-api'
 import { ShopsRepository } from '#app/db/connection'
+import { scopes } from './scopes';
 
 const app = express()
 app.use(bodyParser.json())
@@ -14,7 +15,7 @@ app.use(morgan('dev'))
 const shopify = shopifyApi({
   apiKey: process.env.CLIENT_ID,
   apiSecretKey: String(process.env.CLIENT_SECRET),
-  scopes: ['read_products', 'read_inventory'],
+  scopes: scopes,
   hostName: String(process.env.HOSTNAME),
   apiVersion: LATEST_API_VERSION,
   isEmbeddedApp: false,

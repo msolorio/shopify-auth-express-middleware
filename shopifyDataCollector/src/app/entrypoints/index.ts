@@ -27,12 +27,12 @@ app.get('/data/:shopify_store', async (req, res) => {
     },
     body: JSON.stringify({
       query: `
-        {
-          products (first: 3) {
+        query {
+          orders(first: 20) {
             edges {
               node {
                 id
-                title
+                updatedAt
               }
             }
           }
