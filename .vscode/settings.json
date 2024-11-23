@@ -1,7 +1,7 @@
 {
   "eslint.workingDirectories": [
-    "./shopifyAuth",
-    "./sessionStorage",
-    "./shopifyDataCollector",
+    "./shopify/shopifyAuth",
+    "./shopify/sessionStorage",
+    "./shopify/shopifyDataCollector",
   ]
 }

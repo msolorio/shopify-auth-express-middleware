@@ -1,6 +1,6 @@
 # Shopify API Multi-Tenant
 
-This plugin exposes an endpoint that allows backend applications to pull storefront data from Shopify's admin API and manages OAuth 2.0 flow for client applications.
+This plugin allows backend applications to pull storefront data from Shopify's admin API and manages OAuth 2.0 flow.
 
 This plugin is part of the larger Junta project, an ETL platform for small businesses to track trends and derive insight, unifying data from common ecommerce solutions and exposing behind a single user friendly product.
 
@@ -9,6 +9,8 @@ Many more such plugins will be built out and unified on the Junta platform.
 ![Shopify API Multi-Tenant](./README_assets/junta_project.png)
 
 # Setup
+
+If you need to authenticate new stores, follow step 1. Otherwise, skip to step 2.
 
 1. Create a public endpoint for the auth server with ngrok.
 ```
