@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import { getApiUrl, getPort } from '#app/config'
-import { ShopifyAuth } from '#app/shopifyAuth'
+import { ShopifyAuth, MongoDbSessionStore } from '#app/shopifyAuth'
 import { scopes } from './scopes';
 
 const adminApiUrl = (store: string) => `https://${store}.myshopify.com/admin/api/2025-01/graphql.json`
@@ -22,11 +22,11 @@ const shopifyAuth = ShopifyAuth({
     begin: '/auth',
     callback: '/auth/callback',
   },
-  db: {
+  sessionStore: MongoDbSessionStore({
     url: String(process.env.MONGODB_URI),
     dbName: 'shopifyAuth',
     collectionName: 'shops',
-  },
+  }),
 })
 
 app.use(shopifyAuth.router());

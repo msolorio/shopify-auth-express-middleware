@@ -1,17 +1,17 @@
 import { Request, Response, Router } from 'express';
 import { shopifyApi, LATEST_API_VERSION, Shopify } from '@shopify/shopify-api'
-import { AuthRepository } from '#app/shopifyAuth/AuthRepository.js'
+import { AbstractSessionStore } from '#app/shopifyAuth/sessionStore';
 import { ShopifyAuthPaths, ShopifyAuthApi, Shop } from './types'
 
-class ShopifyAuthRouter {
+export class ShopifyAuthRouter {
   private _shopify: Shopify;
   private _authPaths: ShopifyAuthPaths;
-  private _authRepository: AuthRepository;
+  private _sessionStore: AbstractSessionStore;
 
-  constructor({ api, authPaths, authRepository }: {
+  constructor({ api, authPaths, sessionStore }: {
     api: ShopifyAuthApi,
     authPaths: ShopifyAuthPaths,
-    authRepository: AuthRepository,
+    sessionStore: AbstractSessionStore,
   }) {
     this._shopify = shopifyApi({
       apiKey: api.apiKey,
@@ -22,7 +22,7 @@ class ShopifyAuthRouter {
       isEmbeddedApp: false,
     });
     this._authPaths = authPaths;
-    this._authRepository = authRepository;
+    this._sessionStore = sessionStore;
   }
 
   public create() {
@@ -62,8 +62,6 @@ class ShopifyAuthRouter {
       accessToken: String(callback.session.accessToken),
     }
 
-    await this._authRepository.add(shop);
+    await this._sessionStore.add(shop);
   }
 }
-
-export { ShopifyAuthRouter };

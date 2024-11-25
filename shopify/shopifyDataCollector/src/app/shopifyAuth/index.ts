@@ -1,28 +1,30 @@
 import '@shopify/shopify-api/adapters/node';
-import { AuthRepository } from '#app/shopifyAuth/AuthRepository'
+import { AbstractSessionStore } from '#app/shopifyAuth/sessionStore';
 import { ShopifyAuthRouter } from '#app/shopifyAuth/router'
 import { ShopifyAuthOptions } from './types'
 
+export * from '#app/shopifyAuth/sessionStore';
+
+export const ShopifyAuth = function (options: ShopifyAuthOptions) {
+  return new _ShopifyAuth(options);
+}
+
 class _ShopifyAuth {
-  private _authRepository: AuthRepository;
+  private _sessionStore: AbstractSessionStore;
   private _authRouter: ShopifyAuthRouter;
 
   constructor(options: ShopifyAuthOptions) {
-    this._authRepository = new AuthRepository({
-      url: options.db.url,
-      dbName: options.db.dbName,
-      collectionName: options.db.collectionName,
-    });
+    this._sessionStore = options.sessionStore;
     this._authRouter = new ShopifyAuthRouter({
       api: options.api,
       authPaths: options.authPaths,
-      authRepository: this._authRepository
+      sessionStore: this._sessionStore
     })
   }
 
   public async getAccessToken(shopName: string) {
-    const session = await this._authRepository.get(shopName);
-    return String(session && session.accessToken);
+    const shop = await this._sessionStore.get(shopName);
+    return String(shop && shop.accessToken);
   }
 
   public router() {
@@ -30,9 +32,3 @@ class _ShopifyAuth {
   }
 }
 
-const ShopifyAuth = function (options: ShopifyAuthOptions) {
-  return new _ShopifyAuth(options);
-}
-
-
-export { ShopifyAuth };

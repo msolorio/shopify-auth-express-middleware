@@ -1,3 +1,5 @@
+import { AbstractSessionStore } from './sessionStore';
+
 export type ShopifyAuthOptions = {
   api: {
     apiKey: string;
@@ -9,16 +11,17 @@ export type ShopifyAuthOptions = {
     begin: string;
     callback: string;
   }
-  db: {
-    url: string;
-    dbName: string;
-    collectionName: string;
-  }
+  sessionStore: AbstractSessionStore;
 }
 
 export type ShopifyAuthPaths = ShopifyAuthOptions['authPaths'];
 export type ShopifyAuthApi = ShopifyAuthOptions['api'];
-export type ShopifyAuthDb = ShopifyAuthOptions['db'];
+
+export type MongoDbSessionStoreOptions = {
+  url: string;
+  dbName: string;
+  collectionName: string;
+}
 
 export type Shop = {
   shopName: string;
