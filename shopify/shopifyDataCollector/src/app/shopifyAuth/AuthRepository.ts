@@ -1,5 +1,5 @@
 import { MongoClient, Db, Collection } from 'mongodb';
-import { ShopifyAuthDb } from './types';
+import { ShopifyAuthDb, Shop } from './types';
 
 class AuthRepository {
   private _mongodbClient: MongoClient
@@ -15,20 +15,20 @@ class AuthRepository {
     this._shopsModel = this._db.collection(_collectionName);
   }
 
-  async add(shop: any) {
+  public async add(shop: Shop) {
     await this._mongodbClient.connect()
     await this._shopsModel.updateOne(
-      { shop: shop.shop },
+      { shopName: shop.shopName },
       { $set: shop },
       { upsert: true },
     )
     await this._mongodbClient.close()
   }
 
-  async get(shop: string) {
+  public async get(shopName: string) {
     await this._mongodbClient.connect()
-    const fullShop = `${shop}.myshopify.com`
-    const result = await this._shopsModel.findOne({ shop: fullShop })
+    const fullShopName = `${shopName}.myshopify.com`
+    const result = await this._shopsModel.findOne({ shopName: fullShopName })
     await this._mongodbClient.close()
     return result
   }

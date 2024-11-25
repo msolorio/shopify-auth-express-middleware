@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { shopifyApi, LATEST_API_VERSION, Shopify } from '@shopify/shopify-api'
 import { AuthRepository } from '#app/shopifyAuth/AuthRepository.js'
-import { ShopifyAuthPaths, ShopifyAuthApi } from './types'
+import { ShopifyAuthPaths, ShopifyAuthApi, Shop } from './types'
 
 class ShopifyAuthRouter {
   private _shopify: Shopify;
@@ -57,7 +57,12 @@ class ShopifyAuthRouter {
       rawResponse: res,
     });
     console.log('callback.session', callback.session);
-    await this._authRepository.add(callback.session);
+    const shop: Shop = {
+      shopName: callback.session.shop,
+      accessToken: String(callback.session.accessToken),
+    }
+
+    await this._authRepository.add(shop);
   }
 }
 

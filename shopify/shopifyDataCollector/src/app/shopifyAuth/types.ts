@@ -19,3 +19,8 @@ export type ShopifyAuthOptions = {
 export type ShopifyAuthPaths = ShopifyAuthOptions['authPaths'];
 export type ShopifyAuthApi = ShopifyAuthOptions['api'];
 export type ShopifyAuthDb = ShopifyAuthOptions['db'];
+
+export type Shop = {
+  shopName: string;
+  accessToken: string;
+}
