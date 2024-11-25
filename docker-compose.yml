@@ -2,6 +2,5 @@ networks:
   shopify_data_collector:
     driver: bridge
 include:
-  - ./shopify/shopifyAuth/docker-compose.dev.yml
   - ./shopify/sessionStorage/docker-compose.yml
   - ./shopify/shopifyDataCollector/docker-compose.dev.yml

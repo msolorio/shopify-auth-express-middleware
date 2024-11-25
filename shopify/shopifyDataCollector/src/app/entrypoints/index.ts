@@ -1,25 +1,45 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-import { getApiUrl, getPort } from '#app/config.js'
-import { AuthRepository } from '#app/db/shopRepository'
+import { getApiUrl, getPort } from '#app/config'
+import { ShopifyAuth } from '#app/shopifyAuth'
+import { scopes } from './scopes';
+
+const adminApiUrl = (store: string) => `https://${store}.myshopify.com/admin/api/2025-01/graphql.json`
 
 const app = express()
 app.use(bodyParser.json())
 app.use(morgan('dev'))
-const adminApiUrl = (store: string) => `https://${store}.myshopify.com/admin/api/2025-01/graphql.json`
+
+const shopifyAuth = ShopifyAuth({
+  api: {
+    apiKey: String(process.env.CLIENT_ID),
+    apiSecretKey: String(process.env.CLIENT_SECRET),
+    hostName: String(process.env.HOSTNAME),
+    scopes: scopes,
+  },
+  auth: {
+    beginPath: '/auth',
+    callbackPath: '/auth/callback',
+  },
+  db: {
+    url: String(process.env.MONGODB_URI),
+    dbName: 'shopifyAuth',
+    collectionName: 'shops',
+  },
+})
+
+app.use(shopifyAuth.router());
 
 app.get('/health', (_, res) => {
   res.status(200).send('OK')
 })
 
 app.get('/data/:shopify_store', async (req, res) => {
-  const shopifyStore = req.params.shopify_store
-  const authRepository = new AuthRepository()
-  const session = await authRepository.get(shopifyStore)
-  const accessToken = String(session && session.accessToken)
+  const storeName = req.params.shopify_store;
+  const accessToken = await shopifyAuth.getAccessToken(storeName);
 
-  const data = await fetch(adminApiUrl(shopifyStore), {
+  const data = await fetch(adminApiUrl(storeName), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

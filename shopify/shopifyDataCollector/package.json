@@ -29,7 +29,9 @@
   },
   "dependencies": {
     "@prisma/client": "5.8.1",
-    "express": "^4.19.2",
+    "@shopify/shopify-api": "^11.6.0",
+    "express": "^4.21.1",
+    "mongodb": "^6.11.0",
     "morgan": "^1.10.0",
     "tslib": "~2.6"
   },
