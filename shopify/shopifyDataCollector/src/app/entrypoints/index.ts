@@ -18,9 +18,9 @@ const shopifyAuth = ShopifyAuth({
     hostName: String(process.env.HOSTNAME),
     scopes: scopes,
   },
-  auth: {
-    beginPath: '/auth',
-    callbackPath: '/auth/callback',
+  authPaths: {
+    begin: '/auth',
+    callback: '/auth/callback',
   },
   db: {
     url: String(process.env.MONGODB_URI),
