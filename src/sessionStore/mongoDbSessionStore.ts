@@ -1,5 +1,5 @@
 import { MongoClient, Db, Collection } from 'mongodb';
-import { Shop, MongoDbSessionStoreOptions } from '../types';
+import { Shop, MongoDbSessionStoreOptions } from '#src/types';
 import { AbstractSessionStore } from './index';
 
 export const MongoDbSessionStore = function MongoDbSessionStore(options: MongoDbSessionStoreOptions) {

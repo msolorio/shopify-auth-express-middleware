@@ -6,6 +6,8 @@ export default {
   },
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.(m)?js$': '$1',
+    '^#src/(.*)$': '<rootDir>/src/$1',
+    '^#__tests__/(.*)$': '<rootDir>/__tests__/$1',
   },
   moduleFileExtensions: ['ts', 'mts', 'js', 'mjs'],
   extensionsToTreatAsEsm: ['.ts', '.mts'],

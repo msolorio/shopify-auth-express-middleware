@@ -1,0 +1,28 @@
+// import express from 'express'
+// import bodyParser from 'body-parser'
+// import { ShopifyAuth } from '#src/index';
+
+// describe('ShopifyAuth authentication flow', () => {
+//   it('returns a store session object', async () => {
+//     const app = express();
+//     app.use(bodyParser.json());
+
+//     const fakeSessionStore = FakeSessionStore();
+
+//     const shopifyAuth = ShopifyAuth({
+//       api: {
+//         apiKey: 'API_KEY',
+//         apiSecretKey: 'API_SECRET_KEY',
+//         hostName: 'HOSTNAME',
+//         scopes: [],
+//       },
+//       authPaths: {
+//         begin: '/auth',
+//         callback: '/auth/callback',
+//       },
+//       sessionStore: fakeSessionStore,
+//     });
+
+
+//   })
+// })
