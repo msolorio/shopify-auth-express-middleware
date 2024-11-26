@@ -1,5 +1,5 @@
 export { MongoDbSessionStore } from './mongoDbSessionStore.js';
-import { Shop } from '../types';
+import { Shop } from '#src/types';
 
 export interface AbstractSessionStore {
   add(shop: Shop): Promise<void>
