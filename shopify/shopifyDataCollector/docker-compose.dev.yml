@@ -1,8 +1,0 @@
-services:
-  shopify_data_collector:
-    entrypoint: ["npm", "run", "dev"]
-    extends: 
-      file: docker-compose.yml
-      service: shopify_data_collector
-    environment: []
-    env_file: ".env"

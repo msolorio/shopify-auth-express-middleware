@@ -1,5 +1,5 @@
 import { MongoClient, Db, Collection } from 'mongodb';
-import { Shop, MongoDbSessionStoreOptions } from '#app/shopifyAuth/types';
+import { Shop, MongoDbSessionStoreOptions } from '../types';
 import { AbstractSessionStore } from './index';
 
 export const MongoDbSessionStore = function MongoDbSessionStore(options: MongoDbSessionStoreOptions) {

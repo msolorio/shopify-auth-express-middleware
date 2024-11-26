@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { shopifyApi, LATEST_API_VERSION, Shopify } from '@shopify/shopify-api'
-import { AbstractSessionStore } from '#app/shopifyAuth/sessionStore';
+import { AbstractSessionStore } from './sessionStore';
 import { ShopifyAuthPaths, ShopifyAuthApi, Shop } from './types'
 
 export class ShopifyAuthRouter {

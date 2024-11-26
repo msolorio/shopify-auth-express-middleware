@@ -1,5 +1,5 @@
 export { MongoDbSessionStore } from './mongoDbSessionStore.js';
-import { Shop } from '#app/shopifyAuth/types';
+import { Shop } from '../types';
 
 export interface AbstractSessionStore {
   add(shop: Shop): Promise<void>

@@ -1,9 +1,9 @@
 import '@shopify/shopify-api/adapters/node';
-import { AbstractSessionStore } from '#app/shopifyAuth/sessionStore';
-import { ShopifyAuthRouter } from '#app/shopifyAuth/router'
+import { AbstractSessionStore } from './sessionStore';
+import { ShopifyAuthRouter } from './router'
 import { ShopifyAuthOptions } from './types'
 
-export * from '#app/shopifyAuth/sessionStore';
+export * from './sessionStore';
 
 export const ShopifyAuth = function (options: ShopifyAuthOptions) {
   return new _ShopifyAuth(options);

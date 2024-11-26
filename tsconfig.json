@@ -26,8 +26,8 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "#app/*": [
-        "src/app/*"
+      "#src/*": [
+        "src/*"
       ],
       "#__tests__": [
         "__tests__/*"
