@@ -1,3 +1,4 @@
+// import { Shopify } from '@shopify/shopify-api';
 import { AbstractSessionStore } from './sessionStore';
 
 export type ShopifyAuthOptions = {

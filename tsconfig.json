@@ -39,5 +39,6 @@
     "src/**/*.ts",
     "__tests__/**/*.mts",
     "__tests__/**/*.ts",
+    "clientApp/**/*.ts",
   ]
 }

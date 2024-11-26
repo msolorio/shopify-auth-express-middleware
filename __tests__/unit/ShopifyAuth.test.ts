@@ -1,8 +1,6 @@
 import assert from 'node:assert';
-// import express from 'express'
-// import bodyParser from 'body-parser'
 import { ShopifyAuth } from '#src/index';
-import { FakeSessionStore } from '#src/sessionStore/FakeSessionStore';
+import { FakeSessionStore } from '../fakes/FakeSessionStore';
 
 describe('ShopifyAuth', () => {
   it('can return an access token', async () => {
@@ -29,4 +27,4 @@ describe('ShopifyAuth', () => {
 
     assert.equal(accessToken, 'shpua_123');
   })
-})
+});

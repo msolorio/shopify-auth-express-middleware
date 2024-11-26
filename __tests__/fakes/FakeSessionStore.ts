@@ -1,9 +1,7 @@
-import { AbstractSessionStore } from './index';
+import { AbstractSessionStore } from '#src/sessionStore';
 import { Shop } from '#src/types';
 
-export const FakeSessionStore = function FakeSessionStore(store?: Record<string, Shop>) {
-  return new _FakeSessionStore(store);
-}
+export const FakeSessionStore = (store: Record<string, Shop> = {}) => new _FakeSessionStore(store);
 
 class _FakeSessionStore implements AbstractSessionStore {
   public _store: Record<string, Shop> = {};

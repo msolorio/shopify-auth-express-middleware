@@ -1,0 +1,72 @@
+// import { Request, Response } from 'express';
+// import { shopifyApi, LATEST_API_VERSION, Shopify } from '@shopify/shopify-api';
+// import { ShopifyAuthApi } from '#src/types';
+
+// type AuthBeginOptions = {
+//   shop: string;
+//   callbackPath: string;
+//   isOnline: boolean;
+//   rawRequest: Request;
+//   rawResponse: Response;
+// }
+
+// type AuthCallbackOptions = {
+//   rawRequest: Request;
+//   rawResponse: Response;
+// }
+
+// type SatinizeShopOptions = {
+//   shopName: string;
+//   isOnline: boolean;
+// }
+
+// interface AbstractShopifyApi {
+//   authBegin({
+//     shop,
+//     rawRequest,
+//     rawResponse,
+//   }: AuthBeginOptions): void;
+//   authCallback({
+//     rawRequest,
+//     rawResponse,
+//   }: AuthCallbackOptions): void;
+//   sanitizeShop({
+//     shopName,
+//   }: SatinizeShopOptions): string;
+// }
+
+// type ShopifyApiOptions = {
+//   api: ShopifyAuthApi;
+//   callbackPath: string;
+// }
+
+// class ShopifyApi implements AbstractShopifyApi {
+//   private _shopify: Shopify;
+//   private _callbackPath: string;
+
+//   constructor({ api, callbackPath, }: ShopifyApiOptions) {
+//     this._shopify = shopifyApi({
+//       apiKey: api.apiKey,
+//       apiSecretKey: api.apiSecretKey,
+//       scopes: api.scopes,
+//       hostName: api.hostName,
+//       apiVersion: LATEST_API_VERSION,
+//       isEmbeddedApp: false,
+//     });
+//     this._callbackPath = callbackPath;
+//   }
+
+//   public authBegin({
+//     shop,
+//     rawRequest,
+//     rawResponse,
+//   }: AuthBeginOptions) {
+//     this._shopify.auth.begin({
+//       shop: String(this._shopify.utils.sanitizeShop(shop, true)),
+//       callbackPath: this._callbackPath,
+//       isOnline: false,
+//       rawRequest,
+//       rawResponse,
+//     });
+//   }
+// }
