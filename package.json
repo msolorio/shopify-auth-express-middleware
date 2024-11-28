@@ -8,7 +8,8 @@
     "node": "20.16.0"
   },
   "scripts": {
-    "dev": "npx tsx --watch clientApp/src/app/index.ts",
+    "start-client-app": "node dist/exampleClient/src/app/index.js",
+    "dev": "npx tsx --watch exampleClient/src/app/index.ts",
     "clean": "rimraf coverage dist tmp",
     "prebuild": "npm run lint",
     "build": "tsc -p tsconfig.json",

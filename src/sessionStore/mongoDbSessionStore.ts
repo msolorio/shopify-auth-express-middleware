@@ -1,23 +1,25 @@
+import 'dotenv/config';
 import { MongoClient, Db, Collection } from 'mongodb';
-import { Shop, MongoDbSessionStoreOptions } from '#src/types';
+import { Shop } from '#src/types';
 import { AbstractSessionStore } from './index';
 
-export const MongoDbSessionStore = function MongoDbSessionStore(options: MongoDbSessionStoreOptions) {
-  return new _MongoDbSessionStore(options);
+export const MongoDbSessionStore = function MongoDbSessionStore() {
+  return new _MongoDbSessionStore();
 }
 
+export const mongoClient = new MongoClient(String(process.env.MONGODB_URI));
+
 class _MongoDbSessionStore implements AbstractSessionStore {
+  private _dbName = 'shopify'
+  private _collectionName = 'shops'
   private _mongodbClient: MongoClient
   private _db: Db
   private _shopsModel: Collection
 
-  constructor({ url, dbName, collectionName }: MongoDbSessionStoreOptions) {
-    const _url = url;
-    const _dbName = dbName;
-    const _collectionName = collectionName;
-    this._mongodbClient = new MongoClient(_url);
-    this._db = this._mongodbClient.db(_dbName);
-    this._shopsModel = this._db.collection(_collectionName);
+  constructor() {
+    this._mongodbClient = mongoClient;
+    this._db = this._mongodbClient.db(this._dbName);
+    this._shopsModel = this._db.collection(this._collectionName);
   }
 
   public async add(shop: Shop) {

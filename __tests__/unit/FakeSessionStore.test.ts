@@ -1,5 +1,5 @@
 import assert from 'node:assert';
-import { FakeSessionStore } from '../fakes/FakeSessionStore';
+import { FakeSessionStore } from '../_fakes/FakeSessionStore';
 
 describe('FakeSessionStore', () => {
   it('can get shop records', async () => {

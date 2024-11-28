@@ -1,8 +1,8 @@
 import 'dotenv/config'
 import express from 'express'
 import bodyParser from 'body-parser'
-import { ShopifyAuth } from '#src/index';
-import { FakeSessionStore } from '../../../__tests__/fakes/FakeSessionStore';
+import { ShopifyAuth } from '../../../src';
+import { FakeSessionStore } from '../../../__tests__/_fakes/FakeSessionStore';
 import { getApiUrl, getPort } from '../config';
 import { scopes } from './scopes';
 

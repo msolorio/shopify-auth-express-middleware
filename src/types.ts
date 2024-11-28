@@ -18,12 +18,6 @@ export type ShopifyAuthOptions = {
 export type ShopifyAuthPaths = ShopifyAuthOptions['authPaths'];
 export type ShopifyAuthApi = ShopifyAuthOptions['api'];
 
-export type MongoDbSessionStoreOptions = {
-  url: string;
-  dbName: string;
-  collectionName: string;
-}
-
 export type Shop = {
   shopName: string;
   accessToken: string;

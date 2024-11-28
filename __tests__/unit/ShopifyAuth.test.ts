@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 import { ShopifyAuth } from '#src/index';
-import { FakeSessionStore } from '../fakes/FakeSessionStore';
+import { FakeSessionStore } from '../_fakes/FakeSessionStore';
 
 describe('ShopifyAuth', () => {
   it('can return an access token', async () => {

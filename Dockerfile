@@ -18,8 +18,9 @@ COPY .eslintignore \
 RUN npm ci
 
 COPY src/ ./src
+COPY exampleClient/ ./exampleClient
 COPY __tests__/ ./__tests__
 
 RUN npm run build
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
