@@ -1,10 +1,10 @@
 import { Request, Response, Router } from 'express';
-import { shopifyApi, LATEST_API_VERSION, Shopify } from '@shopify/shopify-api'
+import { shopifyApi, LATEST_API_VERSION } from '@shopify/shopify-api'
 import { AbstractSessionStore } from './sessionStore';
-import { ShopifyAuthPaths, ShopifyAuthApi, Shop } from './types'
+import { ShopifyAuthPaths, ShopifyAuthApi, Shop, ShopifyObject } from './types';
 
 export class ShopifyAuthRouter {
-  private _shopify: Shopify;
+  private _shopify: ShopifyObject; // narrowed Shopify type
   private _authPaths: ShopifyAuthPaths;
   private _sessionStore: AbstractSessionStore;
 
