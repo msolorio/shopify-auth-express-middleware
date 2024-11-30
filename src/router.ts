@@ -1,19 +1,22 @@
 import { Request, Response, Router } from 'express';
 import { shopifyApi, LATEST_API_VERSION } from '@shopify/shopify-api'
 import { AbstractSessionStore } from './sessionStore';
-import { ShopifyAuthPaths, ShopifyAuthApi, Shop, ShopifyObject } from './types';
+import { ShopifyAuthPaths, ShopifyAuthApi, Shop, NarrowedShopifyObject, NarrowedShopifyApi } from './types';
 
 export class ShopifyAuthRouter {
-  private _shopify: ShopifyObject; // narrowed Shopify type
+  private _shopify: NarrowedShopifyObject;
+  private _shopifyApi: NarrowedShopifyApi;
   private _authPaths: ShopifyAuthPaths;
   private _sessionStore: AbstractSessionStore;
 
-  constructor({ api, authPaths, sessionStore }: {
+  constructor({ api, authPaths, sessionStore, fakeShopifyApi }: {
     api: ShopifyAuthApi,
     authPaths: ShopifyAuthPaths,
     sessionStore: AbstractSessionStore,
+    fakeShopifyApi?: NarrowedShopifyApi
   }) {
-    this._shopify = shopifyApi({
+    this._shopifyApi = fakeShopifyApi || shopifyApi;
+    this._shopify = this._shopifyApi({
       apiKey: api.apiKey,
       apiSecretKey: api.apiSecretKey,
       scopes: api.scopes,
@@ -43,7 +46,7 @@ export class ShopifyAuthRouter {
 
   private async _begin(shopName: string, req: Request, res: Response) {
     await this._shopify.auth.begin({
-      shop: String(this._shopify.utils.sanitizeShop(shopName, true)),
+      shop: shopName,
       callbackPath: this._authPaths.callback,
       isOnline: false,
       rawRequest: req,
@@ -56,7 +59,6 @@ export class ShopifyAuthRouter {
       rawRequest: req,
       rawResponse: res,
     });
-    console.log('callback.session', callback.session);
     const shop: Shop = {
       shopName: callback.session.shop,
       accessToken: String(callback.session.accessToken),

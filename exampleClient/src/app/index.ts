@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
 import bodyParser from 'body-parser'
+import morgan from 'morgan'
 import { ShopifyAuth } from '../../../src';
 import { FakeSessionStore } from '../../../__tests__/_fakes/FakeSessionStore';
 import { getApiUrl, getPort } from '../config';
@@ -8,6 +9,7 @@ import { scopes } from './scopes';
 
 const app = express()
 app.use(bodyParser.json())
+app.use(morgan('dev'))
 
 // TODO: replace with real session store
 const fakeSessionStore = FakeSessionStore({

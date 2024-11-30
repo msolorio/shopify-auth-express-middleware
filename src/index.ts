@@ -18,7 +18,8 @@ class _ShopifyAuth {
     this._authRouter = new ShopifyAuthRouter({
       api: options.api,
       authPaths: options.authPaths,
-      sessionStore: this._sessionStore
+      sessionStore: this._sessionStore,
+      fakeShopifyApi: options.fakeShopifyApi,
     })
   }
 

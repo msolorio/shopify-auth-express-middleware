@@ -16,6 +16,6 @@ class _FakeSessionStore implements AbstractSessionStore {
   }
 
   public async get(shopName: string): Promise<Shop | null> {
-    return this._store[shopName];
+    return this._store[shopName] || null;
   }
 }

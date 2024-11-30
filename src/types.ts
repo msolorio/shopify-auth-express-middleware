@@ -1,4 +1,5 @@
-// import { Shopify } from '@shopify/shopify-api';
+// import { LATEST_API_VERSION, shopifyApi } from '@shopify/shopify-api'
+import { LATEST_API_VERSION } from '@shopify/shopify-api'
 import { AbstractSessionStore } from './sessionStore';
 import { Request, Response } from 'express';
 
@@ -14,6 +15,7 @@ export type ShopifyAuthOptions = {
     callback: string;
   }
   sessionStore: AbstractSessionStore;
+  fakeShopifyApi?: NarrowedShopifyApi;
 }
 
 export type ShopifyAuthPaths = ShopifyAuthOptions['authPaths'];
@@ -37,7 +39,7 @@ export type CallbackOptions = {
   rawResponse: Response;
 }
 
-export type ShopifyObject = {
+export type NarrowedShopifyObject = {
   auth: {
     begin: (options: BeginOptions) => Promise<void>;
     callback: (options: CallbackOptions) => Promise<{ session: { shop: string, accessToken?: string | undefined } }>;
@@ -45,4 +47,22 @@ export type ShopifyObject = {
   utils: {
     sanitizeShop: (shopName: string, isOnline: false) => string | null;
   }
+}
+
+// type ShopifyApiOptions = Parameters<typeof shopifyApi> & {
+//   apiVersion: typeof LATEST_API_VERSION;
+//   isEmbeddedApp: false;
+// }
+
+type ShopifyApiOptions = {
+  apiKey: string;
+  apiSecretKey: string;
+  scopes: Array<string>;
+  hostName: string;
+  apiVersion: typeof LATEST_API_VERSION;
+  isEmbeddedApp: false;
+}
+
+export interface NarrowedShopifyApi {
+  (options: ShopifyApiOptions): NarrowedShopifyObject;
 }

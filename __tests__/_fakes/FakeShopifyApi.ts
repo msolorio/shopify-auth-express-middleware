@@ -1,23 +1,17 @@
-import { LATEST_API_VERSION, shopifyApi } from '@shopify/shopify-api'
-import { ShopifyObject, BeginOptions, CallbackOptions } from '#src/types';
+import { NarrowedShopifyApi, BeginOptions, CallbackOptions } from '#src/types';
 
-type ShopifyApiOptions = Parameters<typeof shopifyApi> & {
-  apiVersion: typeof LATEST_API_VERSION;
-  isEmbeddedApp: false;
-}
-
-export const fakeShopifyApi = function (options: ShopifyApiOptions): ShopifyObject {
+export const fakeShopifyApi: NarrowedShopifyApi = function (options) {
   options;
   return {
     auth: {
       begin: async (options: BeginOptions) => {
-        options.rawResponse.redirect(options.callbackPath);
+        return options.rawResponse.redirect(`${options.callbackPath}?shop=${options.shop}`);
       },
       callback: async (options: CallbackOptions) => {
         options;
         return {
           session: {
-            shop: 'shop1.myshopify.com',
+            shop: String(options.rawRequest.query.shop),
             accessToken: 'shpua_123',
           }
         }

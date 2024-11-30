@@ -26,5 +26,5 @@ describe('ShopifyAuth', () => {
     const accessToken = await shopifyAuth.getAccessToken('shop1');
 
     assert.equal(accessToken, 'shpua_123');
-  })
+  });
 });
