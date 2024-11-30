@@ -1,4 +1,4 @@
-import { AbstractSessionStore } from '#src/sessionStore';
+import { AbstractSessionStore } from '#src/sessionStore/types';
 import { Shop } from '#src/types';
 
 export const FakeSessionStore = (store: Record<string, Shop> = {}) => new _FakeSessionStore(store);

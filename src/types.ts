@@ -1,6 +1,5 @@
-// import { LATEST_API_VERSION, shopifyApi } from '@shopify/shopify-api'
-import { LATEST_API_VERSION } from '@shopify/shopify-api'
-import { AbstractSessionStore } from './sessionStore';
+import { LATEST_API_VERSION, LogSeverity } from '@shopify/shopify-api'
+import { AbstractSessionStore } from './sessionStore/types';
 import { Request, Response } from 'express';
 
 export type ShopifyAuthOptions = {
@@ -49,11 +48,6 @@ export type NarrowedShopifyObject = {
   }
 }
 
-// type ShopifyApiOptions = Parameters<typeof shopifyApi> & {
-//   apiVersion: typeof LATEST_API_VERSION;
-//   isEmbeddedApp: false;
-// }
-
 type ShopifyApiOptions = {
   apiKey: string;
   apiSecretKey: string;
@@ -61,6 +55,9 @@ type ShopifyApiOptions = {
   hostName: string;
   apiVersion: typeof LATEST_API_VERSION;
   isEmbeddedApp: false;
+  logger: {
+    level: LogSeverity;
+  }
 }
 
 export interface NarrowedShopifyApi {

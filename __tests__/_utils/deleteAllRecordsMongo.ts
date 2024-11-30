@@ -1,4 +1,6 @@
-import { mongoClient } from '#src/sessionStore/mongoDbSessionStore';
+import { MongoClient } from 'mongodb';
+
+export const mongoClient = new MongoClient(String(process.env.MONGODB_URI));
 
 export const deleteAllRecordsMongo = async () => {
   try {

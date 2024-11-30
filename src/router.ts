@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
-import { shopifyApi, LATEST_API_VERSION } from '@shopify/shopify-api'
-import { AbstractSessionStore } from './sessionStore';
+import { shopifyApi, LATEST_API_VERSION, LogSeverity } from '@shopify/shopify-api'
+import { AbstractSessionStore } from './sessionStore/types';
 import { ShopifyAuthPaths, ShopifyAuthApi, Shop, NarrowedShopifyObject, NarrowedShopifyApi } from './types';
 
 export class ShopifyAuthRouter {
@@ -23,6 +23,9 @@ export class ShopifyAuthRouter {
       hostName: api.hostName,
       apiVersion: LATEST_API_VERSION,
       isEmbeddedApp: false,
+      logger: {
+        level: LogSeverity.Error,
+      }
     });
     this._authPaths = authPaths;
     this._sessionStore = sessionStore;

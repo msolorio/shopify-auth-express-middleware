@@ -1,5 +1,5 @@
 import '@shopify/shopify-api/adapters/node';
-import { AbstractSessionStore } from './sessionStore';
+import { AbstractSessionStore } from './sessionStore/types';
 import { ShopifyAuthRouter } from './router'
 import { ShopifyAuthOptions } from './types'
 

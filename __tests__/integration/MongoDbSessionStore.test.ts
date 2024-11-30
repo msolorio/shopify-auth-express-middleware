@@ -1,13 +1,17 @@
 import 'dotenv/config';
 import assert from 'node:assert';
-import { MongoDbSessionStore, mongoClient } from '#src/sessionStore/mongoDbSessionStore';
-import { deleteAllRecordsMongo } from '../_utils/deleteAllRecordsMongo';
+import { MongoDbSessionStore } from '#src/sessionStore/mongoDbSessionStore';
+import { deleteAllRecordsMongo, mongoClient } from '../_utils/deleteAllRecordsMongo';
 
 beforeEach(async () => await deleteAllRecordsMongo());
 
 describe('MongoDbSessionStore', () => {
   it('can add a shop to mongodb', async () => {
-    const mongoDbSessionStore = MongoDbSessionStore();
+    const mongoDbSessionStore = MongoDbSessionStore({
+      url: String(process.env.MONGODB_URI),
+      dbName: 'shopify',
+      collectionName: 'shops',
+    });
     const shop = {
       shopName: 'shop1.myshopify.com',
       accessToken: 'shpua_123',
@@ -26,7 +30,11 @@ describe('MongoDbSessionStore', () => {
   });
 
   it('can get a shop from mongodb', async () => {
-    const mongoDbSessionStore = MongoDbSessionStore();
+    const mongoDbSessionStore = MongoDbSessionStore({
+      url: String(process.env.MONGODB_URI),
+      dbName: 'shopify',
+      collectionName: 'shops',
+    });
     const shortShopName = 'shop1';
     const shop = {
       shopName: `${shortShopName}.myshopify.com`,

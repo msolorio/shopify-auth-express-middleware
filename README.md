@@ -27,12 +27,15 @@ const shopifyAuth = ShopifyAuth({ // Configure `ShopifyAuth`
     begin: '/auth',
     callback: '/auth/callback',
   },
-  sessionStore: MongoDbSessionStore(), // Choose a session store (MongoDB, PostgreSQL, Redis)
+  sessionStore: MongoDbSessionStore({ // Choose a session store (MongoDB, PostgreSQL, Redis)
+    url: String(process.env.MONGODB_URI),
+    dbName: 'shopify',
+    collectionName: 'shops',
+  }),
 });
 
 app.use(shopifyAuth.router()); // Use the router middleware in your Express app
 
 // Call `getAccessToken` to get an access token for a store.
 const accessToken = await shopifyAuth.getAccessToken(storeName);
-
 ```
