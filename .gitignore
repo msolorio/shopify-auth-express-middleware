@@ -1,3 +1,4 @@
+NOTES.md
 TODO.md
 .env
 .env_x
@@ -31,4 +32,4 @@ dist/
 .eslintcache
 
 # Misc
-.DS_Store
+.DS_StoreNOTES.md

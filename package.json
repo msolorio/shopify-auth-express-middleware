@@ -1,5 +1,6 @@
 {
   "name": "node-typescript-boilerplate",
+  "scope": "@versollabs",
   "version": "1.0.0",
   "description": "Minimal boilerplate for Node.js, TypeScript, Express projects",
   "main": "dist/src/index.js",
