@@ -5,9 +5,8 @@ export DOCKER_BUILDKIT=1
 build:
 	docker-compose build
 
-up:
+up-dev:
 	docker-compose up -d
-	# docker-compose exec -d example_client npm run build:watch
 
 down:
 	docker-compose down
@@ -18,3 +17,14 @@ down-remove-volumes:
 test:
 	docker-compose exec example_client npm test
 
+build-ci:
+	docker-compose -f docker-compose.ci.yml build
+
+up-ci:
+	docker-compose -f docker-compose.ci.yml up -d
+
+test-ci:
+	docker-compose -f docker-compose.ci.yml run --rm --no-deps --entrypoint='npm test' example_client
+
+down-ci:
+	docker-compose -f docker-compose.ci.yml down

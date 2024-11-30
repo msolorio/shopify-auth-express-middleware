@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 import morgan from 'morgan'
 import { ShopifyAuth } from '../../../src';
 import { FakeSessionStore } from '../../../__tests__/_fakes/FakeSessionStore';
-import { getApiUrl, getPort } from '../config';
+import { getApiUrl, getPort, CLIENT_ID, CLIENT_SECRET, SHOPIFY_AUTH_ENDPOINT } from '../config';
 import { scopes } from './scopes';
 
 const app = express()
@@ -20,9 +20,9 @@ const fakeSessionStore = FakeSessionStore({
 });
 const shopifyAuth = ShopifyAuth({
   api: {
-    apiKey: String(process.env.CLIENT_ID),
-    apiSecretKey: String(process.env.CLIENT_SECRET),
-    hostName: String(process.env.HOSTNAME),
+    apiKey: String(CLIENT_ID),
+    apiSecretKey: String(CLIENT_SECRET),
+    hostName: String(SHOPIFY_AUTH_ENDPOINT),
     scopes: scopes,
   },
   authPaths: {

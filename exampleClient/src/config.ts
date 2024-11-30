@@ -7,4 +7,9 @@ const getApiUrl = function (): string {
   return `http://${host}:${getPort()}`
 }
 
+export const CLIENT_ID = process.env.CLIENT_ID
+export const CLIENT_SECRET = process.env.CLIENT
+export const SHOPIFY_AUTH_ENDPOINT = process.env.SHOPIFY_AUTH_ENDPOINT
+export const MONGODB_URI = process.env.MONGODB_URI
+
 export { getApiUrl, getPort }

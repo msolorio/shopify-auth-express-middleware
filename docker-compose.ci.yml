@@ -1,0 +1,21 @@
+services:
+  example_client:
+    extends:
+      file: docker-compose.yml
+      service: example_client
+    environment:
+      - CLIENT_ID=<CLIENT_ID>
+      - CLIENT_SECRET=<CLIENT_SECRET>
+      - SHOPIFY_AUTH_ENDPOINT=<SHOPIFY_AUTH_ENDPOINT>
+      - MONGODB_URI=mongodb://root:example@mongo:27017/
+    volumes: []
+  mongo:
+    extends:
+      file: docker-compose.yml
+      service: mongo
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+    driver: local

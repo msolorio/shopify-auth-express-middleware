@@ -1,7 +1,7 @@
 NOTES.md
 TODO.md
 .env
-.env_x
+.env.*
 
 # Logs
 logs
