@@ -8,6 +8,8 @@ services:
     environment:
       - API_HOST=example_client
       - PORT=80
+    env_file:
+      - .env
     ports:
       - "3001:80"
     volumes:

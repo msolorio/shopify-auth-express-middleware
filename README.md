@@ -12,11 +12,11 @@ To use this package, you'll need to:
 ## Usage Example
 
 ```sh
-npm i @versollabs/shopify-auth-express-middleware
+npm i @versollabs/shopify-auth-express
 ```
 
 ```ts
-import { ShopifyAuth, MongoDbSessionStore } from '@versollabs/shopify-auth-express-middleware';
+import { ShopifyAuth, MongoDbSessionStore } from '@versollabs/shopify-auth-express';
 
 const app = express();
 app.use(bodyParser.json());
