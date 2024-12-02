@@ -9,7 +9,7 @@ services:
       - SHOPIFY_AUTH_ENDPOINT=<SHOPIFY_AUTH_ENDPOINT>
       - MONGODB_URI=mongodb://root:example@mongo:27017/
     volumes: []
-    env_file: []
+    env_file: ""
   mongo:
     extends:
       file: docker-compose.yml
