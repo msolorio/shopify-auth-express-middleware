@@ -18,6 +18,7 @@ const fakeSessionStore = FakeSessionStore({
     'accessToken': 'shpua_123',
   }
 });
+
 const shopifyAuth = ShopifyAuth({
   api: {
     apiKey: String(CLIENT_ID),

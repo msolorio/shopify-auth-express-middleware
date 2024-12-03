@@ -18,17 +18,13 @@ test:
 	docker-compose exec example_client npm test
 
 build-ci:
-	# docker-compose -f docker-compose.ci.yml build
-	docker-compose -f docker-compose.yml -f docker-compose.ci.yml build
+	docker-compose -f docker-compose.ci.yml build
 
 up-ci:
-	# docker-compose -f docker-compose.ci.yml up -d
-	docker-compose -f docker-compose.yml -f docker-compose.ci.yml up -d
+	docker-compose -f docker-compose.ci.yml up -d
 
 test-ci:
-	# docker-compose -f docker-compose.ci.yml run --rm --no-deps --entrypoint='npm test' example_client
-	docker-compose -f docker-compose.yml -f docker-compose.ci.yml run --rm --no-deps --entrypoint='npm test' example_client
+	docker-compose -f docker-compose.ci.yml run --rm --no-deps --entrypoint='npm test' example_client
 
 down-ci:
-	# docker-compose -f docker-compose.ci.yml down
-	docker-compose -f docker-compose.yml -f docker-compose.ci.yml down
+	docker-compose -f docker-compose.ci.yml down
