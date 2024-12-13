@@ -1,3 +1,10 @@
+__tests__/**/*.js
+__tests__/**/*.js.map
+__tests__/**/*.d.ts
+exampleClient/**/*.js
+exampleClient/**/*.js.map
+exampleClient/**/*.d.ts
+
 NOTES.md
 TODO.md
 .env
