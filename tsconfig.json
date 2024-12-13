@@ -8,6 +8,8 @@
     "moduleResolution": "bundler",
     "rootDir": ".",
     "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist/types",
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
@@ -37,8 +39,17 @@
   "include": [
     "src/**/*.mts",
     "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.js.map",
+    "src/**/*.d.ts",
     "__tests__/**/*.mts",
     "__tests__/**/*.ts",
+    "__tests__/**/*.js",
+    "__tests__/**/*.js.map",
+    "__tests__/**/*.d.ts",
     "exampleClient/**/*.ts",
+    "exampleClient/**/*.js",
+    "exampleClient/**/*.js.map",
+    "exampleClient/**/*.d.ts",
   ]
 }
