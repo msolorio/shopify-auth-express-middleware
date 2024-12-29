@@ -19,7 +19,7 @@ beforeAll(async () => {
     .catch(err => console.error('Error creating table', err))
 })
 
-afterEach(async () => {
+beforeEach(async () => {
   await client.query(`DELETE FROM ${tableName}`)
     .catch(err => console.error('Error deleting records', err));
 })
