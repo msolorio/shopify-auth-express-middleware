@@ -2,11 +2,11 @@ import { MongoClient } from 'mongodb';
 
 export const mongoClient = new MongoClient(String(process.env.MONGODB_URI));
 
-export const deleteAllRecordsMongo = async () => {
+export const deleteAllRecordsMongo = async (dbName: string) => {
   try {
     await mongoClient.connect();
     await mongoClient
-      .db('shopify')
+      .db(dbName)
       .collection('shops')
       .deleteMany({});
   } catch (error) {

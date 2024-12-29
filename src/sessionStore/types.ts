@@ -10,3 +10,8 @@ export type MongoDbSessionStoreOptions = {
   dbName: string;
   collectionName: string;
 } | Record<string, never>;
+
+export type PostgresSessionStoreOptions = {
+  url: string;
+  tableName: string;
+}
