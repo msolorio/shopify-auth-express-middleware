@@ -3,13 +3,15 @@ import assert from 'node:assert';
 import { MongoDbSessionStore } from '#src/sessionStore/mongoDbSessionStore';
 import { deleteAllRecordsMongo, mongoClient } from '../_utils/deleteAllRecordsMongo';
 
-beforeEach(async () => await deleteAllRecordsMongo());
+const testDbName = 'shopify-test';
+
+afterEach(async () => await deleteAllRecordsMongo(testDbName));
 
 describe('MongoDbSessionStore', () => {
   it('can add a shop to mongodb', async () => {
     const mongoDbSessionStore = MongoDbSessionStore({
       url: String(process.env.MONGODB_URI),
-      dbName: 'shopify',
+      dbName: testDbName,
       collectionName: 'shops',
     });
     const shop = {
@@ -21,7 +23,7 @@ describe('MongoDbSessionStore', () => {
 
     await mongoClient.connect();
     const addedShop = await mongoClient
-      .db('shopify')
+      .db(testDbName)
       .collection('shops')
       .findOne({ shopName: 'shop1.myshopify.com' });
     await mongoClient.close();
@@ -32,7 +34,7 @@ describe('MongoDbSessionStore', () => {
   it('can get a shop from mongodb', async () => {
     const mongoDbSessionStore = MongoDbSessionStore({
       url: String(process.env.MONGODB_URI),
-      dbName: 'shopify',
+      dbName: testDbName,
       collectionName: 'shops',
     });
     const shortShopName = 'shop1';
@@ -43,7 +45,7 @@ describe('MongoDbSessionStore', () => {
 
     await mongoClient.connect();
     await mongoClient
-      .db('shopify')
+      .db(testDbName)
       .collection('shops')
       .insertOne(shop);
     await mongoClient.close();

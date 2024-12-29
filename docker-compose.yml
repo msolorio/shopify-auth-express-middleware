@@ -36,6 +36,18 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
       ME_CONFIG_BASICAUTH: null
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: exampleuser
+      POSTGRES_PASSWORD: examplepassword
+      POSTGRES_DB: shopify
+    ports:
+      - "54321:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
 volumes:
   mongo-data:
-    driver: local
+  postgres-data:
+
