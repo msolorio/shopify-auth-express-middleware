@@ -4,11 +4,9 @@ import { FakeSessionStore } from '../_fakes/FakeSessionStore';
 
 describe('ShopifyAuth', () => {
   it('can return an access token', async () => {
+    const accessToken = 'shpua_123';
     const fakeSessionStore = FakeSessionStore({
-      'shop1': {
-        'shopName': 'shop1.myshopify.com',
-        'accessToken': 'shpua_123',
-      }
+      'shop1': accessToken,
     });
     const shopifyAuth = ShopifyAuth({
       api: {
@@ -23,8 +21,8 @@ describe('ShopifyAuth', () => {
       },
       sessionStore: fakeSessionStore,
     });
-    const accessToken = await shopifyAuth.getAccessToken('shop1');
+    const result = await shopifyAuth.getAccessToken('shop1');
 
-    assert.equal(accessToken, 'shpua_123');
+    assert.equal(result, accessToken);
   });
 });

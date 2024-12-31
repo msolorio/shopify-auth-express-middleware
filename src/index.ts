@@ -24,8 +24,8 @@ class _ShopifyAuth {
   }
 
   public async getAccessToken(shopName: string) {
-    const shop = await this._sessionStore.get(shopName);
-    return String(shop && shop.accessToken);
+    const accessToken = await this._sessionStore.get(shopName);
+    return String(accessToken);
   }
 
   public router() {

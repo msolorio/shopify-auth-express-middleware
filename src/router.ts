@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { shopifyApi, LATEST_API_VERSION, LogSeverity } from '@shopify/shopify-api'
 import { AbstractSessionStore } from './sessionStore/types';
-import { ShopifyAuthPaths, ShopifyAuthApi, Shop, NarrowedShopifyObject, NarrowedShopifyApi } from './types';
+import { ShopifyAuthPaths, ShopifyAuthApi, NarrowedShopifyObject, NarrowedShopifyApi } from './types';
 
 export class ShopifyAuthRouter {
   private _shopify: NarrowedShopifyObject;
@@ -35,8 +35,8 @@ export class ShopifyAuthRouter {
     const router = Router();
 
     router.get(this._authPaths.begin, async (req, res) => {
-      const shop = String(req.query.shop);
-      await this._begin(shop, req, res);
+      const fullShopName = String(req.query.shop);
+      await this._begin(fullShopName, req, res);
     });
 
     router.get(this._authPaths.callback, async (req, res) => {
@@ -47,9 +47,9 @@ export class ShopifyAuthRouter {
     return router;
   }
 
-  private async _begin(shopName: string, req: Request, res: Response) {
+  private async _begin(fullShopName: string, req: Request, res: Response) {
     await this._shopify.auth.begin({
-      shop: shopName,
+      shop: fullShopName,
       callbackPath: this._authPaths.callback,
       isOnline: false,
       rawRequest: req,
@@ -62,11 +62,10 @@ export class ShopifyAuthRouter {
       rawRequest: req,
       rawResponse: res,
     });
-    const shop: Shop = {
-      shopName: callback.session.shop,
-      accessToken: String(callback.session.accessToken),
-    }
 
-    await this._sessionStore.add(shop);
+    const shopName = callback.session.shop.split('.')[0]
+    const accessToken = String(callback.session.accessToken)
+
+    await this._sessionStore.add(shopName, accessToken);
   }
 }

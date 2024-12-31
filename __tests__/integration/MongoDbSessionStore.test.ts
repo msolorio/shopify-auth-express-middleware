@@ -12,21 +12,19 @@ describe('MongoDbSessionStore', () => {
       dbName: 'shopify',
       collectionName: 'shops',
     });
-    const shop = {
-      shopName: 'shop1.myshopify.com',
-      accessToken: 'shpua_123',
-    };
+    const shopName = 'shop1'
+    const accessToken = 'shpua_123'
 
-    await mongoDbSessionStore.add(shop);
+    await mongoDbSessionStore.add(shopName, accessToken);
 
     await mongoClient.connect();
-    const addedShop = await mongoClient
+    const foundShop = await mongoClient
       .db('shopify')
       .collection('shops')
-      .findOne({ shopName: 'shop1.myshopify.com' });
+      .findOne({ shopName });
     await mongoClient.close();
-    assert.equal(addedShop && addedShop.shopName, shop.shopName);
-    assert.equal(addedShop && addedShop.accessToken, shop.accessToken);
+    assert.equal(foundShop && foundShop.shopName, shopName);
+    assert.equal(foundShop && foundShop.accessToken, accessToken);
   });
 
   it('can get a shop from mongodb', async () => {
@@ -35,22 +33,18 @@ describe('MongoDbSessionStore', () => {
       dbName: 'shopify',
       collectionName: 'shops',
     });
-    const shortShopName = 'shop1';
-    const shop = {
-      shopName: `${shortShopName}.myshopify.com`,
-      accessToken: 'shpua_123',
-    };
+    const shopName = 'shop1';
+    const accessToken = 'shpua_123';
 
     await mongoClient.connect();
     await mongoClient
       .db('shopify')
       .collection('shops')
-      .insertOne(shop);
+      .insertOne({ shopName, accessToken });
     await mongoClient.close();
 
-    const retrievedShop = await mongoDbSessionStore.get(shortShopName);
+    const result = await mongoDbSessionStore.get(shopName);
 
-    assert.equal(retrievedShop && retrievedShop.shopName, shop.shopName);
-    assert.equal(retrievedShop && retrievedShop.accessToken, shop.accessToken);
+    assert.equal(result, accessToken);
   });
 });

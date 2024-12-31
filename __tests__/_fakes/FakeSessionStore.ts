@@ -1,21 +1,19 @@
 import { AbstractSessionStore } from '#src/sessionStore/types';
-import { Shop } from '#src/types';
 
-export const FakeSessionStore = (store: Record<string, Shop> = {}) => new _FakeSessionStore(store);
+export const FakeSessionStore = (store: Record<string, string> = {}) => new _FakeSessionStore(store);
 
 class _FakeSessionStore implements AbstractSessionStore {
-  public _store: Record<string, Shop> = {};
+  public _store: Record<string, string> = {};
 
-  constructor(store: Record<string, Shop> = {}) {
+  constructor(store: Record<string, string> = {}) {
     this._store = store;
   }
 
-  public async add(shop: Shop) {
-    const shortShopName = shop.shopName.split('.')[0];
-    this._store[shortShopName] = shop;
+  public async add(shopName: string, accessToken: string): Promise<void> {
+    this._store[shopName] = accessToken;
   }
 
-  public async get(shopName: string): Promise<Shop | null> {
+  public async get(shopName: string): Promise<string | null> {
     return this._store[shopName] || null;
   }
 }

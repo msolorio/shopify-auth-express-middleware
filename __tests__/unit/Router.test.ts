@@ -26,19 +26,17 @@ describe('Auth Router', () => {
     const app = express();
     app.use(shopifyAuth.router());
 
-    const fakeShopName = 'shop1';
-    const fullFakeShopName = `${fakeShopName}.myshopify.com`;
+    const shopName = 'shop1';
+    const fullShopName = `${shopName}.myshopify.com`;
     await request(app)
-      .get(`/auth?shop=${fullFakeShopName}`)
+      .get(`/auth?shop=${fullShopName}`)
       .expect(302)
       .then((response) => {
         return request(app)
           .get(response.header.location)
           .expect(200);
       });
-    const shop = fakeSessionStore._store[fakeShopName];
 
-    assert.notEqual(shop, undefined);
-    assert.equal(shop && shop.shopName, fullFakeShopName);
+    assert(shopName in fakeSessionStore._store)
   })
 })

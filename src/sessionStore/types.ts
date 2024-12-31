@@ -1,8 +1,6 @@
-import { Shop } from '#src/types';
-
 export interface AbstractSessionStore {
-  add(shop: Shop): Promise<void>
-  get(shopName: string): Promise<Shop | null>
+  add(shopName: string, accessToken: string): Promise<void>
+  get(shopName: string): Promise<string | null>
 }
 
 export type MongoDbSessionStoreOptions = {

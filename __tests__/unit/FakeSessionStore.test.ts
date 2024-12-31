@@ -3,27 +3,22 @@ import { FakeSessionStore } from '../_fakes/FakeSessionStore';
 
 describe('FakeSessionStore', () => {
   it('can get shop records', async () => {
+    const accessToken = 'shpua_111'
     const store = {
-      'shop1': {
-        'shopName': 'shop1.myshopify.com',
-        'accessToken': 'shpua_123',
-      }
+      'shop1': accessToken
     }
     const fakeSessionStore = FakeSessionStore(store);
-    const shop = await fakeSessionStore.get('shop1');
+    const result = await fakeSessionStore.get('shop1');
 
-    assert.equal(shop, store.shop1);
+    assert.equal(result, accessToken);
   });
 
   it('can store shop records', async () => {
     const fakeSessionStore = FakeSessionStore();
-    const shortShopName = 'shop2';
-    const shop = {
-      'shopName': `${shortShopName}.myshopify.com`,
-      'accessToken': 'shpua_123',
-    }
-    await fakeSessionStore.add(shop);
+    const shopName = 'shop2'
+    const accessToken = 'shpua_222'
+    await fakeSessionStore.add(shopName, accessToken);
 
-    assert.equal(fakeSessionStore._store[shortShopName], shop);
+    assert.equal(fakeSessionStore._store[shopName], accessToken);
   });
 });

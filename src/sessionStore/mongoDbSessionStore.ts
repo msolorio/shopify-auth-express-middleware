@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { MongoClient, Db, Collection } from 'mongodb';
-import { Shop } from '#src/types';
+// import { Shop } from '#src/types';
 import { AbstractSessionStore, MongoDbSessionStoreOptions } from './types';
 
 export const MongoDbSessionStore = function MongoDbSessionStore(options: MongoDbSessionStoreOptions) {
@@ -18,21 +18,20 @@ class _MongoDbSessionStore implements AbstractSessionStore {
     this._shopsModel = this._db.collection(options.collectionName);
   }
 
-  public async add(shop: Shop) {
+  public async add(shopName: string, accessToken: string): Promise<void> {
     await this._mongodbClient.connect()
     await this._shopsModel.updateOne(
-      { shopName: shop.shopName },
-      { $set: shop },
+      { shopName },
+      { $set: { shopName, accessToken } },
       { upsert: true },
     )
     await this._mongodbClient.close()
   }
 
-  public async get(shopName: string): Promise<Shop | null> {
+  public async get(shopName: string): Promise<string | null> {
     await this._mongodbClient.connect()
-    const fullShopName = `${shopName}.myshopify.com`
-    const result = await this._shopsModel.findOne({ shopName: fullShopName })
+    const result = await this._shopsModel.findOne({ shopName })
     await this._mongodbClient.close()
-    return result as unknown as Shop | null;
+    return result ? result.accessToken : null as unknown as string | null;
   }
 }
