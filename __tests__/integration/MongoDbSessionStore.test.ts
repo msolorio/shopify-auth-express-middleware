@@ -7,10 +7,11 @@ beforeEach(async () => await deleteAllRecordsMongo());
 
 describe('MongoDbSessionStore', () => {
   it('can add a shop to mongodb', async () => {
+    const collectionName = 'shops-test'
     const mongoDbSessionStore = MongoDbSessionStore({
       url: String(process.env.MONGODB_URI),
       dbName: 'shopify',
-      collectionName: 'shops',
+      collectionName: collectionName,
     });
     const shopName = 'shop1'
     const accessToken = 'shpua_123'
@@ -20,7 +21,7 @@ describe('MongoDbSessionStore', () => {
     await mongoClient.connect();
     const foundShop = await mongoClient
       .db('shopify')
-      .collection('shops')
+      .collection(collectionName)
       .findOne({ shopName });
     await mongoClient.close();
     assert.equal(foundShop && foundShop.shopName, shopName);
@@ -28,10 +29,11 @@ describe('MongoDbSessionStore', () => {
   });
 
   it('can get a shop from mongodb', async () => {
+    const collectionName = 'shops-test'
     const mongoDbSessionStore = MongoDbSessionStore({
       url: String(process.env.MONGODB_URI),
       dbName: 'shopify',
-      collectionName: 'shops',
+      collectionName: collectionName,
     });
     const shopName = 'shop1';
     const accessToken = 'shpua_123';
@@ -39,7 +41,7 @@ describe('MongoDbSessionStore', () => {
     await mongoClient.connect();
     await mongoClient
       .db('shopify')
-      .collection('shops')
+      .collection(collectionName)
       .insertOne({ shopName, accessToken });
     await mongoClient.close();
 

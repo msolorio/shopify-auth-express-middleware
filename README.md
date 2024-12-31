@@ -1,6 +1,6 @@
 # Shopify Auth Express Middleware
 
-A package that makes it easy to manage Shopify authentication in an [Express.js](https://expressjs.com) application. The package builds on the [`@shopify/shopify-api`](https://www.npmjs.com/package/@shopify/shopify-app-express) package and handles OAuth 2.0 and access token storage when Shopify stores install your Shopify app, allowing your app to make authorized requests to the [Shopify Admin API](https://shopify.dev/docs/api/admin-graphql).
+A package that makes it easy to manage OAuth flow with Shopify in an [Express.js](https://expressjs.com) application. The package builds on the [`@shopify/shopify-api`](https://www.npmjs.com/package/@shopify/shopify-app-express) package for managing OAuth 2.0 and allows clients to pass their own behavior for access token storage and retrieval, or provides out of the box support, allowing your app to make authorized requests to the [Shopify Admin API](https://shopify.dev/docs/api/admin-graphql).
 
 ---
 
@@ -32,7 +32,7 @@ const shopifyAuth = ShopifyAuth({ // Configure `ShopifyAuth`
     begin: '/auth',
     callback: '/auth/callback',
   },
-  sessionStore: MongoDbSessionStore({ // Choose a session store (MongoDB, PostgreSQL, Redis)
+  sessionStore: MongoDbSessionStore({ // Provide a session store or use a built-in one
     url: String(process.env.MONGODB_URI),
     dbName: 'shopify',
     collectionName: 'shops',
@@ -43,6 +43,47 @@ app.use(shopifyAuth.router()); // Use the router middleware in your Express app
 
 // Once storefront has installed your app call `getAccessToken` to get an access token for the store.
 const accessToken = await shopifyAuth.getAccessToken(storeName);
+```
+
+## Provide your own session store
+
+You will likely want to provide your own behavior for managing access tokens. You can create a session storage object that implements the `AbstractSessionStore` interface and pass it to the ShopifyAuth constructor.
+
+```ts
+export interface AbstractSessionStore {
+  add(shopName: string, accessToken: string): Promise<void>
+  get(shopName: string): Promise<string | null>
+}
+```
+
+```ts
+import { ShopifyAuth, AbstractSessionStore } from '@versollabs/shopify-auth-express-middleware';
+
+class MySessionStore implements AbstractSessionStore {
+  async add(shopName: string): Promise<void> {
+    // Add access token to persistent storage
+  }
+
+  async get(shopName: string): Promise<string | null> {
+    // Get access token from your session store
+  }
+}
+
+const shopifyAuth = ShopifyAuth({ // Configure `ShopifyAuth`
+  api: {
+    apiKey: String(process.env.CLIENT_ID),
+    apiSecretKey: String(process.env.CLIENT_SECRET),
+    hostName: String(process.env.HOSTNAME),
+    scopes: ['read_products', 'read_orders'],
+  },
+  authPaths: {
+    begin: '/auth',
+    callback: '/auth/callback',
+  },
+  sessionStore: new MySessionStore()
+});
+
+app.use(shopifyAuth.router());
 ```
 
 ## Exposing a public endpoint for local dev

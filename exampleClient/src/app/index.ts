@@ -11,12 +11,8 @@ const app = express()
 app.use(bodyParser.json())
 app.use(morgan('dev'))
 
-// TODO: replace with real session store
 const fakeSessionStore = FakeSessionStore({
-  'shop1': {
-    'shopName': 'shop1.myshopify.com',
-    'accessToken': 'shpua_123',
-  }
+  shop1: 'shpua_123',
 });
 
 const shopifyAuth = ShopifyAuth({
